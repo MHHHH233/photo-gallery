@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Photo Gallery</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function upDate(previewPic) {
+  console.log("Mouseover triggered!");
+
+  // Show info in console
+  console.log("Alt text:", previewPic.alt);
+  console.log("Image source:", previewPic.src);
+
+  // Select main div
+  let imageDiv = document.getElementById("image");
+
+  // Update background and text
+  imageDiv.style.backgroundImage = `url('${previewPic.src}')`;
+  imageDiv.innerHTML = previewPic.alt;
+}
+
+function undo() {
+  console.log("Mouseout triggered!");
+
+  // Reset div to original
+  let imageDiv = document.getElementById("image");
+  imageDiv.style.backgroundImage = "url('')";
+  imageDiv.innerHTML = "Hover over an image below to display here.";
+}
+
+  </script>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+#image {
+  width: 500px;
+  height: 300px;
+  border: 2px solid #ccc;
+  margin: 20px auto;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#gallery img {
+  width: 150px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+#gallery img:hover {
+  transform: scale(1.1);
+}
+
+  </style>
+</head>
+<body>
+  <div id="image">
+    Hover over an image below to display here.
+  </div>
+
+  <div id="gallery">
+    <img src="https://via.placeholder.com/150/0000FF" alt="Blue Image" onmouseover="upDate(this)" onmouseout="undo()">
+    <img src="https://via.placeholder.com/150/FF0000" alt="Red Image" onmouseover="upDate(this)" onmouseout="undo()">
+    <img src="https://via.placeholder.com/150/00FF00" alt="Green Image" onmouseover="upDate(this)" onmouseout="undo()">
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
